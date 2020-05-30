@@ -1,5 +1,5 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {HttpClientService} from '../service/http-client.service';
+import {Employee, HttpClientService} from '../service/http-client.service';
 
 @Component({
   selector: 'app-employee',
@@ -8,7 +8,7 @@ import {HttpClientService} from '../service/http-client.service';
 })
 export class EmployeeComponent implements OnInit {
 
-  employees: string[];
+  employees: Employee[];
 
   constructor(@Inject(HttpClientService)
               private httpClientService: HttpClientService) {
@@ -19,6 +19,13 @@ export class EmployeeComponent implements OnInit {
       response => this.handleSuccessResponse(response),
     );
   }
+
+  deleteEmployee(employee: Employee): void {
+    this.httpClientService.deleteEmployee(employee).subscribe(data => {
+      this.employees = this.employees.filter(e => e !== employee);
+    });
+  }
+
 
   handleSuccessResponse(response) {
     this.employees = response;

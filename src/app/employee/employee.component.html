@@ -11,6 +11,9 @@
     <td>{{employee.name}}</td>
     <td>{{employee.designation}}</td>
     <td>{{employee.salary}}</td>
+    <td>
+      <button class="btn btn-danger" (click)="deleteEmployee(employee)">DELETE</button>
+    </td>
   </tr>
   </tbody>
 </table>

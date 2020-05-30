@@ -22,8 +22,16 @@ export class HttpClientService {
   ) {
   }
 
-  getEmployees() {
-    console.log("----- CALLING GET EMPLOYEE LIST ------ ")
+  public getEmployees() {
+    console.log('----- CALLING GET EMPLOYEE LIST ------ ');
     return this.httpClient.get<Employee[]>('http://localhost:8888/employee/list');
+  }
+
+  public createEmployee(employee) {
+    return this.httpClient.post<Employee>('http://localhost:8888/employee', employee);
+  }
+
+  public deleteEmployee(employee) {
+    return this.httpClient.delete<Employee>('http://localhost:8888/employee/' + employee.empId);
   }
 }
