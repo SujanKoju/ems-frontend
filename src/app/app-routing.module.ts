@@ -2,11 +2,15 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {EmployeeComponent} from './employee/employee.component';
 import {AddEmployeeComponent} from './add-employee/add-employee.component';
+import {LoginComponent} from './login/login.component';
+import {LogoutComponent} from './logout/logout.component';
+import {AuthGuardService} from './service/auth-guard.service';
 
 const routes: Routes = [
-  {path: '', component: EmployeeComponent},
-  {path: 'addEmployee', component: AddEmployeeComponent},
-
+  {path: '', component: EmployeeComponent, canActivate: [AuthGuardService]},
+  {path: 'addEmployee', component: AddEmployeeComponent, canActivate: [AuthGuardService]},
+  {path: 'login', component: LoginComponent},
+  {path: 'logout', component: LogoutComponent, canActivate: [AuthGuardService]},
 ];
 
 @NgModule({
